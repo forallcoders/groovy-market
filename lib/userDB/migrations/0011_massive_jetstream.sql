@@ -1,0 +1,1 @@
+ALTER TABLE "pregen_wallets" ADD CONSTRAINT "pregen_wallets_user_id_type_unique" UNIQUE("user_id","type");

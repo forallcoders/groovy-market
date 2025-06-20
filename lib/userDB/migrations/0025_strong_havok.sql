@@ -1,0 +1,1 @@
+ALTER TABLE "users_table" ADD COLUMN "has_accepted_terms" boolean DEFAULT false NOT NULL;

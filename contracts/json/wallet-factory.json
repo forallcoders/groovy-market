@@ -1,0 +1,526 @@
+{
+    "abi": [
+      {
+        "type": "constructor",
+        "inputs": [
+          {
+            "name": "trustedForwarder",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "stateMutability": "nonpayable"
+      },
+      { "type": "receive", "stateMutability": "payable" },
+      {
+        "type": "function",
+        "name": "createWallet",
+        "inputs": [],
+        "outputs": [
+          { "name": "wallet", "type": "address", "internalType": "address" }
+        ],
+        "stateMutability": "nonpayable"
+      },
+      {
+        "type": "function",
+        "name": "createWalletFor",
+        "inputs": [
+          { "name": "user", "type": "address", "internalType": "address" }
+        ],
+        "outputs": [
+          { "name": "wallet", "type": "address", "internalType": "address" }
+        ],
+        "stateMutability": "nonpayable"
+      },
+      {
+        "type": "function",
+        "name": "forwarder",
+        "inputs": [],
+        "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+        "stateMutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "getWalletAddress",
+        "inputs": [
+          { "name": "user", "type": "address", "internalType": "address" }
+        ],
+        "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+        "stateMutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "isTrustedForwarder",
+        "inputs": [
+          { "name": "forwarder", "type": "address", "internalType": "address" }
+        ],
+        "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+        "stateMutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "isValidWallet",
+        "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
+        "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+        "stateMutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "proxyWalletImplementation",
+        "inputs": [],
+        "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+        "stateMutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "trustedForwarder",
+        "inputs": [],
+        "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+        "stateMutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "userWallets",
+        "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
+        "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+        "stateMutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "validateWallet",
+        "inputs": [
+          { "name": "wallet", "type": "address", "internalType": "address" }
+        ],
+        "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+        "stateMutability": "view"
+      },
+      {
+        "type": "event",
+        "name": "WalletCreated",
+        "inputs": [
+          {
+            "name": "user",
+            "type": "address",
+            "indexed": true,
+            "internalType": "address"
+          },
+          {
+            "name": "wallet",
+            "type": "address",
+            "indexed": true,
+            "internalType": "address"
+          }
+        ],
+        "anonymous": false
+      },
+      { "type": "error", "name": "WalletAlreadyExists", "inputs": [] }
+    ],
+    "bytecode": {
+      "object": "0x60e0346100f457601f6114e538819003918201601f19168301916001600160401b038311848410176100e0578084926020946040528339810103126100f457516001600160a01b038116908181036100f457608081905260a05260405190610c8d8083016001600160401b038111848210176100e0576020928492610858843981520301905ff080156100d5576001600160a01b031660c05260405161075f90816100f9823960805181818161012d0152818161020b01526102a3015260a0518160a1015260c05181818160e901526103900152f35b6040513d5f823e3d90fd5b634e487b7160e01b5f52604160045260245ffd5b5f80fdfe6080604052600436101561001a575b3615610018575f80fd5b005b5f3560e01c806311ebbf241461027e5780631fd9afa51461015c57806333a412e51461023d578063439a30121461019f578063572b6c05146101e057806363a183d11461019f57806363e6ffdd1461015c5780637da0a8771461011857806391a1fed5146100d45763f645d4f90361000e57346100d0575f3660031901126100d0576040517f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03168152602090f35b5f80fd5b346100d0575f3660031901126100d0576040517f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03168152602090f35b346100d0575f3660031901126100d0576040517f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03168152602090f35b346100d05760203660031901126100d0576004356001600160a01b038116908190036100d0575f525f602052602060018060a01b0360405f205416604051908152f35b346100d05760203660031901126100d0576004356001600160a01b038116908190036100d0575f526001602052602060ff60405f2054166040519015158152f35b346100d05760203660031901126100d0576004356001600160a01b038116908190036100d0576040517f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03169091148152602090f35b346100d05760203660031901126100d0576004356001600160a01b03811681036100d05761026c60209161030d565b6040516001600160a01b039091168152f35b346100d0575f3660031901126100d057602061026c61029b6102a0565b61030d565b337f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03161480610302575b156102fe5760131936013681116102ea573560601c90565b634e487b7160e01b5f52601160045260245ffd5b3390565b5060143610156102d2565b6001600160a01b039081165f8181526020819052604090205490911661047d576040516020810163189acdbd60e31b815282602483015260248252606082019180831067ffffffffffffffff841117610469578260405261029d9081810191606083019285841067ffffffffffffffff85111761046957606093849261048d88397f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316905260406080820152825160a0820181905294859060c083015e5f8280878401010152605f1994601f80199101160101030101905ff0801561045e5760018060a01b03168181925f525f60205260405f20826bffffffffffffffffffffffff60a01b825416179055815f52600160205260405f20600160ff198254161790557f5b03bfed1c14a02bdeceb5fa582eb1a5765fc0bc64ca0e6af4c20afc9487f0815f80a390565b6040513d5f823e3d90fd5b634e487b7160e01b5f52604160045260245ffd5b630f721df160e31b5f5260045ffdfe608060405261029d8038038061001481610168565b92833981016040828203126101645781516001600160a01b03811692909190838303610164576020810151906001600160401b03821161016457019281601f8501121561016457835161006e610069826101a1565b610168565b9481865260208601936020838301011161016457815f926020809301865e86010152823b15610152577f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc80546001600160a01b031916821790557fbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b5f80a282511561013a575f8091610122945190845af43d15610132573d91610113610069846101a1565b9283523d5f602085013e6101bc565b505b6040516082908161021b8239f35b6060916101bc565b50505034156101245763b398979f60e01b5f5260045ffd5b634c9c8ce360e01b5f5260045260245ffd5b5f80fd5b6040519190601f01601f191682016001600160401b0381118382101761018d57604052565b634e487b7160e01b5f52604160045260245ffd5b6001600160401b03811161018d57601f01601f191660200190565b906101e057508051156101d157805190602001fd5b63d6bda27560e01b5f5260045ffd5b81511580610211575b6101f1575090565b639996b31560e01b5f9081526001600160a01b0391909116600452602490fd5b50803b156101e956fe60806040527f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc545f9081906001600160a01b0316368280378136915af43d5f803e156048573d5ff35b3d5ffdfea26469706673582212206bde3928918b10651c1361edaba27e13cd21e0fc880ce57e78856a5e5a25ecbe64736f6c634300081b0033a264697066735822122005054ee9365cdaf3f1cc755358b89036da378e06fde2725c39e032e3b3b7e4ab64736f6c634300081b003360a034607457601f610c8d38819003918201601f19168301916001600160401b03831184841017607857808492602094604052833981010312607457516001600160a01b0381168103607457608052604051610c00908161008d8239608051818181610387015281816103d0015261082f0152f35b5f80fd5b634e487b7160e01b5f52604160045260245ffdfe6080604052600436101561001a575b3615610018575f80fd5b005b5f3560e01c8063150b7a021461009957806334ee979114610094578063572b6c051461008f5780637da0a8771461008a5780638da5cb5b14610085578063bc197c8114610080578063c4d66de81461007b5763f23a6e610361000e576105a4565b61051f565b610486565b6103ff565b6103bb565b610363565b61025a565b346100f25760803660031901126100f2576100b56004356100f6565b6100c06024356100f6565b6064356001600160401b0381116100f2576100df90369060040161017f565b50604051630a85bd0160e11b8152602090f35b5f80fd5b6001600160a01b038116036100f257565b634e487b7160e01b5f52604160045260245ffd5b60405190608082018281106001600160401b0382111761013a57604052565b610107565b6040519190601f01601f191682016001600160401b0381118382101761013a57604052565b6001600160401b03811161013a57601f01601f191660200190565b81601f820112156100f25780359061019e61019983610164565b61013f565b92828452602083830101116100f257815f926020809301838601378301015290565b6001600160401b03811161013a5760051b60200190565b805180835260209291819084018484015e5f828201840152601f01601f1916010190565b602081016020825282518091526040820191602060408360051b8301019401925f915b83831061022d57505050505090565b909192939460208061024b600193603f1986820301875289516101d7565b9701930193019193929061021e565b60203660031901126100f2576004356001600160401b0381116100f257366023820112156100f2578060040135610293610199826101c0565b916024602084848152019260051b820101903682116100f25760248101925b8284106102d5576102d16102c58661068f565b604051918291826101fb565b0390f35b83356001600160401b0381116100f2578201608060231982360301126100f2576102fd61011b565b91602482013560038110156100f2578352604482013561031c816100f6565b6020840152606482013560408401526084820135926001600160401b0384116100f25761035360209493602486953692010161017f565b60608201528152019301926102b2565b346100f25760203660031901126100f2576020600435610382816100f6565b6040517f00000000000000000000000000000000000000000000000000000000000000006001600160a01b039081169216919091148152f35b346100f2575f3660031901126100f2576040517f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03168152602090f35b346100f2575f3660031901126100f2575f516020610bab5f395f51905f52546040516001600160a01b039091168152602090f35b9080601f830112156100f257813561044d610199826101c0565b9260208085848152019260051b8201019283116100f257602001905b8282106104765750505090565b8135815260209182019101610469565b346100f25760a03660031901126100f2576104a26004356100f6565b6104ad6024356100f6565b6044356001600160401b0381116100f2576104cc903690600401610433565b506064356001600160401b0381116100f2576104ec903690600401610433565b506084356001600160401b0381116100f25761050c90369060040161017f565b5060405163bc197c8160e01b8152602090f35b346100f25760203660031901126100f25760043561053c816100f6565b5f516020610bab5f395f51905f52546001600160a01b0316610569575f516020610bab5f395f51905f5255005b60405162461bcd60e51b8152602060048201526013602482015272185b1c9958591e481a5b9a5d1a585b1a5e9959606a1b6044820152606490fd5b346100f25760a03660031901126100f2576105c06004356100f6565b6105cb6024356100f6565b6084356001600160401b0381116100f2576105ea90369060040161017f565b5060405163f23a6e6160e01b8152602090f35b9061060a610199836101c0565b828152809261061b601f19916101c0565b01905f5b82811061062b57505050565b80606060208093850101520161061f565b80518210156106505760209160051b010190565b634e487b7160e01b5f52603260045260245ffd5b9060206106759281815201906101d7565b90565b6040906106759392815281602082015201906101d7565b5f516020610bab5f395f51905f52549091906001600160a01b036106b161082c565b166001600160a01b03909116036107c6576106cc82516105fd565b915f5b81518110156107c2576106eb6106e5828461063c565b51610918565b901561079a57906001916106ff828761063c565b5261070a818661063c565b5061071361082c565b6107316020610722848761063c565b5101516001600160a01b031690565b7fd15c4e7fc5914a8794701d309748dd460fd04c14303681b73b3f40e8adf5b110604061075e858861063c565b51015191606061076e868961063c565b51015190610791604051928392898060a01b031696898060a01b03169583610678565b0390a3016106cf565b6107a66107be91610a63565b60405162461bcd60e51b815291829160048301610664565b0390fd5b5050565b60405162461bcd60e51b815260206004820152601760248201527f6d7573742062652063616c6c6564206279206f776e65720000000000000000006044820152606490fd5b9190820391821161081857565b634e487b7160e01b5f52601160045260245ffd5b337f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031614806108ca575b156108c6576013193601368111610818573681116100f2576106759080356bffffffffffffffffffffffff19811691360390601482106108a1575b505060601c90565b6bffffffffffffffffffffffff1960149290920360031b82901b161690505f80610899565b3390565b50601436101561085e565b600311156108df57565b634e487b7160e01b5f52602160045260245ffd5b3d15610913573d9061090761019983610164565b9182523d5f602084013e565b606090565b5f606060028351610928816108d5565b610931816108d5565b0361097757505060208101515f91829160609061095e906001600160a01b03165b6001600160a01b031690565b91015190602082519201905af46109736108f3565b9091565b9160018194929451610988816108d5565b610991816108d5565b146109995750565b60208101519193505f925082916109b8906001600160a01b0316610952565b6060604083015192015191602083519301915af16109736108f3565b6109de604061013f565b90601d82527f636170747572656420656d70747920726576657274206d6573736167650000006020830152565b6020818303126100f2578051906001600160401b0382116100f2570181601f820112156100f257805190610a4161019983610164565b92828452602083830101116100f257815f9260208093018386015e8301015290565b805115610ad857610aad906004610a78610b10565b50815160048110610ad0575b81610a8e9161080b565b602082610a99610b10565b940101835260208301526040820152610b3e565b805115610ac7578060208061067593518301019101610a0b565b506106756109d4565b905080610a84565b50610ae3604061013f565b601c81527f636170747572656420656d707479207265766572742062756666657200000000602082015290565b60405190606082018281106001600160401b0382111761013a576040525f6040838281528260208201520152565b906020820151610b5061019982610164565b818152610b5c82610164565b602082019190601f1901368337935190915b6020811015610b935760015f199160200360031b1b0190818351169119905116179052565b8151835260209283019290910190601f1901610b6e56fefbb5f4f58e0fa88efd8478ccea97a1e88b42489737b9b4c93a6c5a1c7ad68519a264697066735822122007217b0368138aee19c19ba44509ac7537cb201f4f68bd58786c480b0d64629464736f6c634300081b0033",
+      "sourceMap": "606:2926:70:-:0;;;;;;;;;;;;;-1:-1:-1;;606:2926:70;;;;-1:-1:-1;;;;;606:2926:70;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;606:2926:70;;;;;;;;1500:37:22;;;;1045:28:70;;606:2926;;;1107:33;;;;-1:-1:-1;;;;;1107:33:70;;;;;;;;606:2926;1107:33;;;;;;606:2926;;1107:33;;;-1:-1:-1;1107:33:70;;;;;-1:-1:-1;;;;;606:2926:70;1151:33;;606:2926;;;;;;;;1500:37:22;606:2926:70;;;;;;;;;;;;;;;1045:28;606:2926;;;;;1151:33;606:2926;;;;;;;;;;;1107:33;606:2926;;;-1:-1:-1;606:2926:70;;;;;1107:33;606:2926;;;-1:-1:-1;606:2926:70;;;;;-1:-1:-1;606:2926:70;;-1:-1:-1;606:2926:70;",
+      "linkReferences": {}
+    },
+    "deployedBytecode": {
+      "object": "0x6080604052600436101561001a575b3615610018575f80fd5b005b5f3560e01c806311ebbf241461027e5780631fd9afa51461015c57806333a412e51461023d578063439a30121461019f578063572b6c05146101e057806363a183d11461019f57806363e6ffdd1461015c5780637da0a8771461011857806391a1fed5146100d45763f645d4f90361000e57346100d0575f3660031901126100d0576040517f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03168152602090f35b5f80fd5b346100d0575f3660031901126100d0576040517f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03168152602090f35b346100d0575f3660031901126100d0576040517f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03168152602090f35b346100d05760203660031901126100d0576004356001600160a01b038116908190036100d0575f525f602052602060018060a01b0360405f205416604051908152f35b346100d05760203660031901126100d0576004356001600160a01b038116908190036100d0575f526001602052602060ff60405f2054166040519015158152f35b346100d05760203660031901126100d0576004356001600160a01b038116908190036100d0576040517f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03169091148152602090f35b346100d05760203660031901126100d0576004356001600160a01b03811681036100d05761026c60209161030d565b6040516001600160a01b039091168152f35b346100d0575f3660031901126100d057602061026c61029b6102a0565b61030d565b337f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03161480610302575b156102fe5760131936013681116102ea573560601c90565b634e487b7160e01b5f52601160045260245ffd5b3390565b5060143610156102d2565b6001600160a01b039081165f8181526020819052604090205490911661047d576040516020810163189acdbd60e31b815282602483015260248252606082019180831067ffffffffffffffff841117610469578260405261029d9081810191606083019285841067ffffffffffffffff85111761046957606093849261048d88397f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316905260406080820152825160a0820181905294859060c083015e5f8280878401010152605f1994601f80199101160101030101905ff0801561045e5760018060a01b03168181925f525f60205260405f20826bffffffffffffffffffffffff60a01b825416179055815f52600160205260405f20600160ff198254161790557f5b03bfed1c14a02bdeceb5fa582eb1a5765fc0bc64ca0e6af4c20afc9487f0815f80a390565b6040513d5f823e3d90fd5b634e487b7160e01b5f52604160045260245ffd5b630f721df160e31b5f5260045ffdfe608060405261029d8038038061001481610168565b92833981016040828203126101645781516001600160a01b03811692909190838303610164576020810151906001600160401b03821161016457019281601f8501121561016457835161006e610069826101a1565b610168565b9481865260208601936020838301011161016457815f926020809301865e86010152823b15610152577f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc80546001600160a01b031916821790557fbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b5f80a282511561013a575f8091610122945190845af43d15610132573d91610113610069846101a1565b9283523d5f602085013e6101bc565b505b6040516082908161021b8239f35b6060916101bc565b50505034156101245763b398979f60e01b5f5260045ffd5b634c9c8ce360e01b5f5260045260245ffd5b5f80fd5b6040519190601f01601f191682016001600160401b0381118382101761018d57604052565b634e487b7160e01b5f52604160045260245ffd5b6001600160401b03811161018d57601f01601f191660200190565b906101e057508051156101d157805190602001fd5b63d6bda27560e01b5f5260045ffd5b81511580610211575b6101f1575090565b639996b31560e01b5f9081526001600160a01b0391909116600452602490fd5b50803b156101e956fe60806040527f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc545f9081906001600160a01b0316368280378136915af43d5f803e156048573d5ff35b3d5ffdfea26469706673582212206bde3928918b10651c1361edaba27e13cd21e0fc880ce57e78856a5e5a25ecbe64736f6c634300081b0033a264697066735822122005054ee9365cdaf3f1cc755358b89036da378e06fde2725c39e032e3b3b7e4ab64736f6c634300081b0033",
+      "sourceMap": "606:2926:70:-:0;;;;;;;;;-1:-1:-1;606:2926:70;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;606:2926:70;;;;;;658:34;-1:-1:-1;;;;;606:2926:70;;;;;;;;;;;;;;;;-1:-1:-1;;606:2926:70;;;;;;698:50;-1:-1:-1;;;;;606:2926:70;;;;;;;;;;;;-1:-1:-1;;606:2926:70;;;;;;1707:17:22;-1:-1:-1;;;;;606:2926:70;;;;;;;;;;;;-1:-1:-1;;606:2926:70;;;;;;-1:-1:-1;;;;;606:2926:70;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;606:2926:70;;;;;;-1:-1:-1;;;;;606:2926:70;;;;;;;;;;3417:13;606:2926;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;606:2926:70;;;;;;-1:-1:-1;;;;;606:2926:70;;;;;;;;;;1707:17:22;-1:-1:-1;;;;;606:2926:70;1931:31:22;;;606:2926:70;;;;;;;;;;;-1:-1:-1;;606:2926:70;;;;;;-1:-1:-1;;;;;606:2926:70;;;;;;1905:22;606:2926;1905:22;;:::i;:::-;606:2926;;-1:-1:-1;;;;;606:2926:70;;;;;;;;;;;;-1:-1:-1;;606:2926:70;;;;;1442:22;1413:12;;:::i;:::-;1442:22;:::i;2206:429:22:-;2422:10;1707:17;-1:-1:-1;;;;;606:2926:70;1931:31:22;;2403:71;;2206:429;2399:230;;;606:2926:70;;2312:8:22;606:2926:70;2312:8:22;606:2926:70;;;;;;;;2490:72:22:o;606:2926:70:-;;;;;;;;;;;;2399:230:22;2422:10;2593:25;:::o;2403:71::-;2312:8;3483:2;2312:8;2437:37;;2403:71;;2132:659:70;-1:-1:-1;;;;;606:2926:70;;;2220:11;606:2926;;;;;;;;;;;;;;2216:65;;606:2926;;;2372:61;;2395:31;;;2372:61;;;;;;606:2926;2372:61;;;606:2926;;;;;;;;;;;;;;;;2519:53;;;;;;606:2926;2519:53;;;;;;606:2926;2519:53;;;;;606:2926;2519:53;;;;;;2536:25;-1:-1:-1;;;;;606:2926:70;;;;;;;;;;;;;;;;;;;;;;;2220:11;606:2926;;;;;;;;2519:53;;2372:61;606:2926;2372:61;;606:2926;;;;;2519:53;;;;2220:11;2519:53;;;;;606:2926;;;;;;;;;2220:11;606:2926;2220:11;606:2926;;;2220:11;606:2926;;;;;;;;;;;;2220:11;606:2926;2714:4;606:2926;;;2220:11;606:2926;2714:4;606:2926;;;;;;;;2734:27;2220:11;2734:27;;2132:659;:::o;2519:53::-;606:2926;;;2220:11;606:2926;;;;;2519:53;606:2926;;;2220:11;606:2926;;;;2372:61;2220:11;606:2926;2216:65;2260:21;;;2220:11;2260:21;;2220:11;2260:21",
+      "linkReferences": {},
+      "immutableReferences": {
+        "36476": [
+          { "start": 301, "length": 32 },
+          { "start": 523, "length": 32 },
+          { "start": 675, "length": 32 }
+        ],
+        "53203": [{ "start": 161, "length": 32 }],
+        "53205": [
+          { "start": 233, "length": 32 },
+          { "start": 912, "length": 32 }
+        ]
+      }
+    },
+    "methodIdentifiers": {
+      "createWallet()": "11ebbf24",
+      "createWalletFor(address)": "33a412e5",
+      "forwarder()": "f645d4f9",
+      "getWalletAddress(address)": "1fd9afa5",
+      "isTrustedForwarder(address)": "572b6c05",
+      "isValidWallet(address)": "439a3012",
+      "proxyWalletImplementation()": "91a1fed5",
+      "trustedForwarder()": "7da0a877",
+      "userWallets(address)": "63e6ffdd",
+      "validateWallet(address)": "63a183d1"
+    },
+    "rawMetadata": "{\"compiler\":{\"version\":\"0.8.27+commit.40a35a09\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"trustedForwarder\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"WalletAlreadyExists\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"}],\"name\":\"WalletCreated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"createWallet\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"createWalletFor\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"forwarder\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getWalletAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"forwarder\",\"type\":\"address\"}],\"name\":\"isTrustedForwarder\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"isValidWallet\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"proxyWalletImplementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"trustedForwarder\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"userWallets\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"}],\"name\":\"validateWallet\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"createWallet()\":{\"returns\":{\"wallet\":\"The address of the newly created wallet\"}},\"createWalletFor(address)\":{\"params\":{\"user\":\"The user to create a wallet for\"},\"returns\":{\"wallet\":\"The address of the newly created wallet\"}},\"getWalletAddress(address)\":{\"params\":{\"user\":\"The user to look up\"},\"returns\":{\"_0\":\"The wallet address, or address(0) if no wallet exists\"}},\"isTrustedForwarder(address)\":{\"details\":\"Indicates whether any particular address is the trusted forwarder.\"},\"trustedForwarder()\":{\"details\":\"Returns the address of the trusted forwarder.\"},\"validateWallet(address)\":{\"params\":{\"wallet\":\"The wallet address to check\"},\"returns\":{\"_0\":\"True if this is a valid wallet created by this factory\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"createWallet()\":{\"notice\":\"Creates a new wallet for the calling user\"},\"createWalletFor(address)\":{\"notice\":\"Creates a new wallet for a specific user via meta-transaction\"},\"getWalletAddress(address)\":{\"notice\":\"Gets a user's wallet address, or returns address(0) if none exists\"},\"validateWallet(address)\":{\"notice\":\"Checks if an address is a valid wallet created by this factory\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/WalletProxy/ProxyWallet/ProxyWalletFactory.sol\":\"ProxyWalletFactory\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin/=lib/openzeppelin-contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/openzeppelin-contracts/lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":halmos-cheatcodes/=lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\"],\"viaIR\":true},\"sources\":{\"lib/forge-std/src/console.sol\":{\"keccak256\":\"0x4bbf47eb762cef93729d6ef15e78789957147039b113e5d4df48e3d3fd16d0f5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://af9e3a7c3d82fb5b10b57ca4d1a82f2acbef80c077f6f6ef0cc0187c7bfd9f57\",\"dweb:/ipfs/QmR9VzmnBDJpgiDP6CHT6truehukF9HpYvuP6kRiJbDwPP\"]},\"lib/openzeppelin-contracts/contracts/access/Ownable.sol\":{\"keccak256\":\"0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6\",\"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a\"]},\"lib/openzeppelin-contracts/contracts/interfaces/IERC1967.sol\":{\"keccak256\":\"0xb25a4f11fa80c702bf5cd85adec90e6f6f507f32f4a8e6f5dbc31e8c10029486\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6917f8a323e7811f041aecd4d9fd6e92455a6fba38a797ac6f6e208c7912b79d\",\"dweb:/ipfs/QmShuYv55wYHGi4EFkDB8QfF7ZCHoKk2efyz3AWY1ExSq7\"]},\"lib/openzeppelin-contracts/contracts/metatx/ERC2771Context.sol\":{\"keccak256\":\"0x0b030a33274bde015419d99e54c9164f876a7d10eb590317b79b1d5e4ab23d99\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://68e5f96988198e8efd25ddef0d89750b4daebb7fd1204fa7f5eaccdfcb3398c8\",\"dweb:/ipfs/QmaM6nNkf9UmEtQraopuZamEWCdTWp7GvuN3pjMQrNCHxm\"]},\"lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Proxy.sol\":{\"keccak256\":\"0x0a8a5b994d4c4da9f61d128945cc8c9e60dcbc72bf532f72ae42a48ea90eed9a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e63ae15b6b1079b9d3c73913424d4278139f9e9c9658316675b9c48d5883a50d\",\"dweb:/ipfs/QmWLxBYfp8j1YjNMabWgv75ELTaK2eEYEEGx7qsJbxVZZq\"]},\"lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Utils.sol\":{\"keccak256\":\"0x911c3346ee26afe188f3b9dc267ef62a7ccf940aba1afa963e3922f0ca3d8a06\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://04539f4419e44a831807d7203375d2bc6a733da256efd02e51290f5d5015218c\",\"dweb:/ipfs/QmPZ97gsAAgaMRPiE2WJfkzRsudQnW5tPAvMgGj1jcTJtR\"]},\"lib/openzeppelin-contracts/contracts/proxy/Proxy.sol\":{\"keccak256\":\"0xc3f2ec76a3de8ed7a7007c46166f5550c72c7709e3fc7e8bb3111a7191cdedbd\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e73efb4c2ca655882dc237c6b4f234a9bd36d97159d8fcaa837eb01171f726ac\",\"dweb:/ipfs/QmTNnnv7Gu5fs5G1ZMh7Fexp8N4XUs3XrNAngjcxgiss3e\"]},\"lib/openzeppelin-contracts/contracts/proxy/beacon/IBeacon.sol\":{\"keccak256\":\"0xc59a78b07b44b2cf2e8ab4175fca91e8eca1eee2df7357b8d2a8833e5ea1f64c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5aa4f07e65444784c29cd7bfcc2341b34381e4e5b5da9f0c5bd00d7f430e66fa\",\"dweb:/ipfs/QmWRMh4Q9DpaU9GvsiXmDdoNYMyyece9if7hnfLz7uqzWM\"]},\"lib/openzeppelin-contracts/contracts/utils/Address.sol\":{\"keccak256\":\"0x9d8da059267bac779a2dbbb9a26c2acf00ca83085e105d62d5d4ef96054a47f5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c78e2aa4313323cecd1ef12a8d6265b96beee1a199923abf55d9a2a9e291ad23\",\"dweb:/ipfs/QmUTs2KStXucZezzFo3EYeqYu47utu56qrF7jj1Gue65vb\"]},\"lib/openzeppelin-contracts/contracts/utils/Context.sol\":{\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12\",\"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF\"]},\"lib/openzeppelin-contracts/contracts/utils/Create2.sol\":{\"keccak256\":\"0xbb7e8401583d26268ea9103013bcdcd90866a7718bd91105ebd21c9bf11f4f06\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://866a11ad89c93ee918078f7a46ae31e17d89216ce64603f0d34be7ed0a5c520e\",\"dweb:/ipfs/QmW3ckLEJg2v2NzuVLNJFmRuerGSipw6Dzg6ntbmqbAGoC\"]},\"lib/openzeppelin-contracts/contracts/utils/Errors.sol\":{\"keccak256\":\"0x6afa713bfd42cf0f7656efa91201007ac465e42049d7de1d50753a373648c123\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ba1d02f4847670a1b83dec9f7d37f0b0418d6043447b69f3a29a5f9efc547fcf\",\"dweb:/ipfs/QmQ7iH2keLNUKgq2xSWcRmuBE5eZ3F5whYAkAGzCNNoEWB\"]},\"lib/openzeppelin-contracts/contracts/utils/StorageSlot.sol\":{\"keccak256\":\"0xcf74f855663ce2ae00ed8352666b7935f6cddea2932fdf2c3ecd30a9b1cd0e97\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9f660b1f351b757dfe01438e59888f31f33ded3afcf5cb5b0d9bf9aa6f320a8b\",\"dweb:/ipfs/QmarDJ5hZEgBtCmmrVzEZWjub9769eD686jmzb2XpSU1cM\"]},\"src/WalletProxy/ProxyWallet/ProxyWallet.sol\":{\"keccak256\":\"0xc428eb83a251c53f7882a35d178826209a0ab0009592f33593ab7168678bc8dd\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bce72b8596ff57c2747e737702b77d259dbb6db80d514e50ecbf76302f13a8f7\",\"dweb:/ipfs/QmZKRkcdnW9WopkQ5KT5YaKVeVnyMkT1K7zFpgM1FHg2ph\"]},\"src/WalletProxy/ProxyWallet/ProxyWalletFactory.sol\":{\"keccak256\":\"0xb9b6eb81bc7255847d7a582c748c1ccc567885f134f0d4b82a0f4b3261e03bb5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://455eaa59f566b6476169410fc5d8cdbebc7c7acb5e2bafe38d1bca81da89e873\",\"dweb:/ipfs/QmaouJPHWGVwyTNfPkPAbAb8kxYiKb6Kq1SGH8kdc1EAvo\"]},\"src/WalletProxy/libraries/FactoryLib.sol\":{\"keccak256\":\"0x30457c7c6f99723178b3347c408bfc5433b77b27debe945e1d23f23a99cf3ca8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://565029cd4a629d455429d8d24d0527f32462414112c1b947dcad17ca41d42cd5\",\"dweb:/ipfs/QmYb3qTaA6jgyLePLUnxocUgCceiWyY29MeJmfYWWN4c6U\"]},\"src/WalletProxy/libraries/MemcpyLib.sol\":{\"keccak256\":\"0xc57b0d4c2ed7e97bb9b3d6c83b1dcdafd9347630deafc657daf6bf2da4470a70\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://831edce9ef7edb78e3fcf6b7ffa4e7f56acb3537709ebb98c438350e7fd78f97\",\"dweb:/ipfs/QmSZz97QaC34i4PPCHg3tb7hSoocgEp4fYtgm2hVAYhcaH\"]},\"src/WalletProxy/libraries/ProxyWalletLib.sol\":{\"keccak256\":\"0x4c3565cbe234bd9f75d046aacd4cff7859962c4bc8e9a4627fe4f08d1ca26a10\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0f87727f94db4ce0070f56f447ca9e18b9b495da604eff1f1b3d73ade26e8adf\",\"dweb:/ipfs/Qmbp97nZuxQqnwPFdxnnCwPeBUciW7E8J94sbeYWnCikFN\"]},\"src/WalletProxy/libraries/RevertCaptureLib.sol\":{\"keccak256\":\"0x70a31833b418fdb7ca04f0bb67d2331fe3d5f7c15cd74d37cd96648e85ab56ba\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c0fe5b0a8c22ad8eca70ae0c1576039b6816a7ac5f8ab44af0d2e306f4e52b6e\",\"dweb:/ipfs/QmZFjVZ9UR3jV1U7JKLiDH4Y3d54YWYdJp1sKj8wHzH4Mb\"]},\"src/WalletProxy/libraries/SliceLib.sol\":{\"keccak256\":\"0x45b7a1d72f9402b6f58b71e88a773b1a2fb42d4fa2bddc41231f13378e7c3af9\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://da360bca02ae633b2f450b11612139818a5397344efb0b3ef9a7633d1ec05ab4\",\"dweb:/ipfs/QmTS86E9ivwtf3HLkw51d5g2ktPon9W4SMTyVA7G3kMv86\"]}},\"version\":1}",
+    "metadata": {
+      "compiler": { "version": "0.8.27+commit.40a35a09" },
+      "language": "Solidity",
+      "output": {
+        "abi": [
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "trustedForwarder",
+                "type": "address"
+              }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+          },
+          { "inputs": [], "type": "error", "name": "WalletAlreadyExists" },
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "user",
+                "type": "address",
+                "indexed": true
+              },
+              {
+                "internalType": "address",
+                "name": "wallet",
+                "type": "address",
+                "indexed": true
+              }
+            ],
+            "type": "event",
+            "name": "WalletCreated",
+            "anonymous": false
+          },
+          {
+            "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function",
+            "name": "createWallet",
+            "outputs": [
+              { "internalType": "address", "name": "wallet", "type": "address" }
+            ]
+          },
+          {
+            "inputs": [
+              { "internalType": "address", "name": "user", "type": "address" }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function",
+            "name": "createWalletFor",
+            "outputs": [
+              { "internalType": "address", "name": "wallet", "type": "address" }
+            ]
+          },
+          {
+            "inputs": [],
+            "stateMutability": "view",
+            "type": "function",
+            "name": "forwarder",
+            "outputs": [
+              { "internalType": "address", "name": "", "type": "address" }
+            ]
+          },
+          {
+            "inputs": [
+              { "internalType": "address", "name": "user", "type": "address" }
+            ],
+            "stateMutability": "view",
+            "type": "function",
+            "name": "getWalletAddress",
+            "outputs": [
+              { "internalType": "address", "name": "", "type": "address" }
+            ]
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "forwarder",
+                "type": "address"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function",
+            "name": "isTrustedForwarder",
+            "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+          },
+          {
+            "inputs": [
+              { "internalType": "address", "name": "", "type": "address" }
+            ],
+            "stateMutability": "view",
+            "type": "function",
+            "name": "isValidWallet",
+            "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+          },
+          {
+            "inputs": [],
+            "stateMutability": "view",
+            "type": "function",
+            "name": "proxyWalletImplementation",
+            "outputs": [
+              { "internalType": "address", "name": "", "type": "address" }
+            ]
+          },
+          {
+            "inputs": [],
+            "stateMutability": "view",
+            "type": "function",
+            "name": "trustedForwarder",
+            "outputs": [
+              { "internalType": "address", "name": "", "type": "address" }
+            ]
+          },
+          {
+            "inputs": [
+              { "internalType": "address", "name": "", "type": "address" }
+            ],
+            "stateMutability": "view",
+            "type": "function",
+            "name": "userWallets",
+            "outputs": [
+              { "internalType": "address", "name": "", "type": "address" }
+            ]
+          },
+          {
+            "inputs": [
+              { "internalType": "address", "name": "wallet", "type": "address" }
+            ],
+            "stateMutability": "view",
+            "type": "function",
+            "name": "validateWallet",
+            "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+          },
+          { "inputs": [], "stateMutability": "payable", "type": "receive" }
+        ],
+        "devdoc": {
+          "kind": "dev",
+          "methods": {
+            "createWallet()": {
+              "returns": { "wallet": "The address of the newly created wallet" }
+            },
+            "createWalletFor(address)": {
+              "params": { "user": "The user to create a wallet for" },
+              "returns": { "wallet": "The address of the newly created wallet" }
+            },
+            "getWalletAddress(address)": {
+              "params": { "user": "The user to look up" },
+              "returns": {
+                "_0": "The wallet address, or address(0) if no wallet exists"
+              }
+            },
+            "isTrustedForwarder(address)": {
+              "details": "Indicates whether any particular address is the trusted forwarder."
+            },
+            "trustedForwarder()": {
+              "details": "Returns the address of the trusted forwarder."
+            },
+            "validateWallet(address)": {
+              "params": { "wallet": "The wallet address to check" },
+              "returns": {
+                "_0": "True if this is a valid wallet created by this factory"
+              }
+            }
+          },
+          "version": 1
+        },
+        "userdoc": {
+          "kind": "user",
+          "methods": {
+            "createWallet()": {
+              "notice": "Creates a new wallet for the calling user"
+            },
+            "createWalletFor(address)": {
+              "notice": "Creates a new wallet for a specific user via meta-transaction"
+            },
+            "getWalletAddress(address)": {
+              "notice": "Gets a user's wallet address, or returns address(0) if none exists"
+            },
+            "validateWallet(address)": {
+              "notice": "Checks if an address is a valid wallet created by this factory"
+            }
+          },
+          "version": 1
+        }
+      },
+      "settings": {
+        "remappings": [
+          "@openzeppelin/=lib/openzeppelin-contracts/",
+          "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+          "ds-test/=lib/openzeppelin-contracts/lib/forge-std/lib/ds-test/src/",
+          "erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
+          "forge-std/=lib/forge-std/src/",
+          "halmos-cheatcodes/=lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/",
+          "openzeppelin-contracts/=lib/openzeppelin-contracts/"
+        ],
+        "optimizer": { "enabled": true, "runs": 200 },
+        "metadata": { "bytecodeHash": "ipfs" },
+        "compilationTarget": {
+          "src/WalletProxy/ProxyWallet/ProxyWalletFactory.sol": "ProxyWalletFactory"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "viaIR": true
+      },
+      "sources": {
+        "lib/forge-std/src/console.sol": {
+          "keccak256": "0x4bbf47eb762cef93729d6ef15e78789957147039b113e5d4df48e3d3fd16d0f5",
+          "urls": [
+            "bzz-raw://af9e3a7c3d82fb5b10b57ca4d1a82f2acbef80c077f6f6ef0cc0187c7bfd9f57",
+            "dweb:/ipfs/QmR9VzmnBDJpgiDP6CHT6truehukF9HpYvuP6kRiJbDwPP"
+          ],
+          "license": "MIT"
+        },
+        "lib/openzeppelin-contracts/contracts/access/Ownable.sol": {
+          "keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
+          "urls": [
+            "bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
+            "dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
+          ],
+          "license": "MIT"
+        },
+        "lib/openzeppelin-contracts/contracts/interfaces/IERC1967.sol": {
+          "keccak256": "0xb25a4f11fa80c702bf5cd85adec90e6f6f507f32f4a8e6f5dbc31e8c10029486",
+          "urls": [
+            "bzz-raw://6917f8a323e7811f041aecd4d9fd6e92455a6fba38a797ac6f6e208c7912b79d",
+            "dweb:/ipfs/QmShuYv55wYHGi4EFkDB8QfF7ZCHoKk2efyz3AWY1ExSq7"
+          ],
+          "license": "MIT"
+        },
+        "lib/openzeppelin-contracts/contracts/metatx/ERC2771Context.sol": {
+          "keccak256": "0x0b030a33274bde015419d99e54c9164f876a7d10eb590317b79b1d5e4ab23d99",
+          "urls": [
+            "bzz-raw://68e5f96988198e8efd25ddef0d89750b4daebb7fd1204fa7f5eaccdfcb3398c8",
+            "dweb:/ipfs/QmaM6nNkf9UmEtQraopuZamEWCdTWp7GvuN3pjMQrNCHxm"
+          ],
+          "license": "MIT"
+        },
+        "lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Proxy.sol": {
+          "keccak256": "0x0a8a5b994d4c4da9f61d128945cc8c9e60dcbc72bf532f72ae42a48ea90eed9a",
+          "urls": [
+            "bzz-raw://e63ae15b6b1079b9d3c73913424d4278139f9e9c9658316675b9c48d5883a50d",
+            "dweb:/ipfs/QmWLxBYfp8j1YjNMabWgv75ELTaK2eEYEEGx7qsJbxVZZq"
+          ],
+          "license": "MIT"
+        },
+        "lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Utils.sol": {
+          "keccak256": "0x911c3346ee26afe188f3b9dc267ef62a7ccf940aba1afa963e3922f0ca3d8a06",
+          "urls": [
+            "bzz-raw://04539f4419e44a831807d7203375d2bc6a733da256efd02e51290f5d5015218c",
+            "dweb:/ipfs/QmPZ97gsAAgaMRPiE2WJfkzRsudQnW5tPAvMgGj1jcTJtR"
+          ],
+          "license": "MIT"
+        },
+        "lib/openzeppelin-contracts/contracts/proxy/Proxy.sol": {
+          "keccak256": "0xc3f2ec76a3de8ed7a7007c46166f5550c72c7709e3fc7e8bb3111a7191cdedbd",
+          "urls": [
+            "bzz-raw://e73efb4c2ca655882dc237c6b4f234a9bd36d97159d8fcaa837eb01171f726ac",
+            "dweb:/ipfs/QmTNnnv7Gu5fs5G1ZMh7Fexp8N4XUs3XrNAngjcxgiss3e"
+          ],
+          "license": "MIT"
+        },
+        "lib/openzeppelin-contracts/contracts/proxy/beacon/IBeacon.sol": {
+          "keccak256": "0xc59a78b07b44b2cf2e8ab4175fca91e8eca1eee2df7357b8d2a8833e5ea1f64c",
+          "urls": [
+            "bzz-raw://5aa4f07e65444784c29cd7bfcc2341b34381e4e5b5da9f0c5bd00d7f430e66fa",
+            "dweb:/ipfs/QmWRMh4Q9DpaU9GvsiXmDdoNYMyyece9if7hnfLz7uqzWM"
+          ],
+          "license": "MIT"
+        },
+        "lib/openzeppelin-contracts/contracts/utils/Address.sol": {
+          "keccak256": "0x9d8da059267bac779a2dbbb9a26c2acf00ca83085e105d62d5d4ef96054a47f5",
+          "urls": [
+            "bzz-raw://c78e2aa4313323cecd1ef12a8d6265b96beee1a199923abf55d9a2a9e291ad23",
+            "dweb:/ipfs/QmUTs2KStXucZezzFo3EYeqYu47utu56qrF7jj1Gue65vb"
+          ],
+          "license": "MIT"
+        },
+        "lib/openzeppelin-contracts/contracts/utils/Context.sol": {
+          "keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+          "urls": [
+            "bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+            "dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+          ],
+          "license": "MIT"
+        },
+        "lib/openzeppelin-contracts/contracts/utils/Create2.sol": {
+          "keccak256": "0xbb7e8401583d26268ea9103013bcdcd90866a7718bd91105ebd21c9bf11f4f06",
+          "urls": [
+            "bzz-raw://866a11ad89c93ee918078f7a46ae31e17d89216ce64603f0d34be7ed0a5c520e",
+            "dweb:/ipfs/QmW3ckLEJg2v2NzuVLNJFmRuerGSipw6Dzg6ntbmqbAGoC"
+          ],
+          "license": "MIT"
+        },
+        "lib/openzeppelin-contracts/contracts/utils/Errors.sol": {
+          "keccak256": "0x6afa713bfd42cf0f7656efa91201007ac465e42049d7de1d50753a373648c123",
+          "urls": [
+            "bzz-raw://ba1d02f4847670a1b83dec9f7d37f0b0418d6043447b69f3a29a5f9efc547fcf",
+            "dweb:/ipfs/QmQ7iH2keLNUKgq2xSWcRmuBE5eZ3F5whYAkAGzCNNoEWB"
+          ],
+          "license": "MIT"
+        },
+        "lib/openzeppelin-contracts/contracts/utils/StorageSlot.sol": {
+          "keccak256": "0xcf74f855663ce2ae00ed8352666b7935f6cddea2932fdf2c3ecd30a9b1cd0e97",
+          "urls": [
+            "bzz-raw://9f660b1f351b757dfe01438e59888f31f33ded3afcf5cb5b0d9bf9aa6f320a8b",
+            "dweb:/ipfs/QmarDJ5hZEgBtCmmrVzEZWjub9769eD686jmzb2XpSU1cM"
+          ],
+          "license": "MIT"
+        },
+        "src/WalletProxy/ProxyWallet/ProxyWallet.sol": {
+          "keccak256": "0xc428eb83a251c53f7882a35d178826209a0ab0009592f33593ab7168678bc8dd",
+          "urls": [
+            "bzz-raw://bce72b8596ff57c2747e737702b77d259dbb6db80d514e50ecbf76302f13a8f7",
+            "dweb:/ipfs/QmZKRkcdnW9WopkQ5KT5YaKVeVnyMkT1K7zFpgM1FHg2ph"
+          ],
+          "license": "MIT"
+        },
+        "src/WalletProxy/ProxyWallet/ProxyWalletFactory.sol": {
+          "keccak256": "0xb9b6eb81bc7255847d7a582c748c1ccc567885f134f0d4b82a0f4b3261e03bb5",
+          "urls": [
+            "bzz-raw://455eaa59f566b6476169410fc5d8cdbebc7c7acb5e2bafe38d1bca81da89e873",
+            "dweb:/ipfs/QmaouJPHWGVwyTNfPkPAbAb8kxYiKb6Kq1SGH8kdc1EAvo"
+          ],
+          "license": "MIT"
+        },
+        "src/WalletProxy/libraries/FactoryLib.sol": {
+          "keccak256": "0x30457c7c6f99723178b3347c408bfc5433b77b27debe945e1d23f23a99cf3ca8",
+          "urls": [
+            "bzz-raw://565029cd4a629d455429d8d24d0527f32462414112c1b947dcad17ca41d42cd5",
+            "dweb:/ipfs/QmYb3qTaA6jgyLePLUnxocUgCceiWyY29MeJmfYWWN4c6U"
+          ],
+          "license": "MIT"
+        },
+        "src/WalletProxy/libraries/MemcpyLib.sol": {
+          "keccak256": "0xc57b0d4c2ed7e97bb9b3d6c83b1dcdafd9347630deafc657daf6bf2da4470a70",
+          "urls": [
+            "bzz-raw://831edce9ef7edb78e3fcf6b7ffa4e7f56acb3537709ebb98c438350e7fd78f97",
+            "dweb:/ipfs/QmSZz97QaC34i4PPCHg3tb7hSoocgEp4fYtgm2hVAYhcaH"
+          ],
+          "license": "MIT"
+        },
+        "src/WalletProxy/libraries/ProxyWalletLib.sol": {
+          "keccak256": "0x4c3565cbe234bd9f75d046aacd4cff7859962c4bc8e9a4627fe4f08d1ca26a10",
+          "urls": [
+            "bzz-raw://0f87727f94db4ce0070f56f447ca9e18b9b495da604eff1f1b3d73ade26e8adf",
+            "dweb:/ipfs/Qmbp97nZuxQqnwPFdxnnCwPeBUciW7E8J94sbeYWnCikFN"
+          ],
+          "license": "MIT"
+        },
+        "src/WalletProxy/libraries/RevertCaptureLib.sol": {
+          "keccak256": "0x70a31833b418fdb7ca04f0bb67d2331fe3d5f7c15cd74d37cd96648e85ab56ba",
+          "urls": [
+            "bzz-raw://c0fe5b0a8c22ad8eca70ae0c1576039b6816a7ac5f8ab44af0d2e306f4e52b6e",
+            "dweb:/ipfs/QmZFjVZ9UR3jV1U7JKLiDH4Y3d54YWYdJp1sKj8wHzH4Mb"
+          ],
+          "license": "MIT"
+        },
+        "src/WalletProxy/libraries/SliceLib.sol": {
+          "keccak256": "0x45b7a1d72f9402b6f58b71e88a773b1a2fb42d4fa2bddc41231f13378e7c3af9",
+          "urls": [
+            "bzz-raw://da360bca02ae633b2f450b11612139818a5397344efb0b3ef9a7633d1ec05ab4",
+            "dweb:/ipfs/QmTS86E9ivwtf3HLkw51d5g2ktPon9W4SMTyVA7G3kMv86"
+          ],
+          "license": "MIT"
+        }
+      },
+      "version": 1
+    },
+    "id": 70
+  }
+  

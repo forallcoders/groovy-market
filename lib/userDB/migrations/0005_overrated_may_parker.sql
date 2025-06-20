@@ -1,0 +1,1 @@
+ALTER TABLE "users_table" ALTER COLUMN "capsule_id" DROP NOT NULL;

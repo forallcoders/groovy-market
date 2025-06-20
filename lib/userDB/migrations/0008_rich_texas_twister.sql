@@ -1,0 +1,2 @@
+ALTER TABLE "tournament_table" ALTER COLUMN "contract_address" DROP DEFAULT;--> statement-breakpoint
+ALTER TABLE "brackets_table" ADD CONSTRAINT "brackets_table_tournament_id_token_id_unique" UNIQUE("tournament_id","token_id");

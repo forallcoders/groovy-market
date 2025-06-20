@@ -1,0 +1,1 @@
+ALTER TABLE "brackets_table" ADD COLUMN "prize" integer;

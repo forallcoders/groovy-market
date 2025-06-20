@@ -1,0 +1,1 @@
+ALTER TABLE "user_activity" ADD COLUMN "token_id" text NOT NULL;

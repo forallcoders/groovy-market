@@ -1,0 +1,1 @@
+ALTER TABLE "users_table" ALTER COLUMN "evm_address" DROP NOT NULL;

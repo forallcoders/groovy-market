@@ -1,0 +1,28 @@
+{
+  "crons": [
+    {
+      "path": "/api/orders/check-expired-orders",
+      "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/markets/cron/crypto/market-cap",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/markets/cron/crypto/price",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/markets/cron/sports/create-upcoming",
+      "schedule": "0 1 * * *"
+    },
+    {
+      "path": "/api/markets/cron/sports/publish/grouped",
+      "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/markets/cron/sports/publish/single",
+      "schedule": "* * * * *"
+    }
+  ]
+}

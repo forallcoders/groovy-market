@@ -1,0 +1,1 @@
+ALTER TABLE "users_table" ADD CONSTRAINT "users_table_capsule_id_unique" UNIQUE("capsule_id");

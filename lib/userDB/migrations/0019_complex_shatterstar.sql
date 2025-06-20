@@ -1,0 +1,1 @@
+ALTER TABLE "pregen_wallets" ADD COLUMN "address_secondary" text;

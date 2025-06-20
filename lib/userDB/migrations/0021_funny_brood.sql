@@ -1,0 +1,1 @@
+ALTER TABLE "bracket_referrals" ADD CONSTRAINT "bracket_referrals_user_id_referrer_id_unique" UNIQUE("user_id","referrer_id");
